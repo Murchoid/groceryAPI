@@ -11,7 +11,9 @@ const cors = require('cors');
 
 //express middleware to allow cross origin requests
 app.use(cors({
-    origin:'*'
+    origin:'*',
+    methods: ['GET', 'POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.options('*', cors()); 
 
