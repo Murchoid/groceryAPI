@@ -16,7 +16,7 @@ try{
             console.log("Successful log in");
         }
         else{
-            res.status(401).json({message:'wrong credentials'});
+            res.status(401).json({message:'wrong password'});
             console.log("Wrong password");
         }
     }

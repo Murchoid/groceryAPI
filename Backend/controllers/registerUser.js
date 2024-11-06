@@ -27,7 +27,7 @@ const registerUser = async (req,res)=>{
     catch(error){
         if(error.code==11000){ /*this code in mongodb means user with email exists*/
             console.log("User already exists");
-            res.status(400).json({error:'User exists'});
+            res.status(400).json({message:'User exists'});
         }
         else{
             console.error("An error occured: ", + error);
