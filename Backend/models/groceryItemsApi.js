@@ -3,7 +3,7 @@ const getProducts = async (req, res) => {
       // Dynamically import node-fetch
       const fetch = (await import('node-fetch')).default;
 
-      const response = await fetch('https://dummyjson.com/products');
+      const response = await fetch('https://dummyjson.com/products/category/groceries');
       const data = await response.json();
 
       res.status(200).json({ data });
@@ -14,4 +14,22 @@ const getProducts = async (req, res) => {
   }
 }
 
-module.exports = getProducts;
+
+const searchProducts = async (req, res) => {
+  try {
+      // Dynamically import node-fetch
+      const fetch = (await import('node-fetch')).default;
+      const {searchThis} = req.body;
+      console.log(searchThis);
+      const response = await fetch(`https://dummyjson.com/products/search?q=${searchThis}`);
+      const data = await response.json();
+
+      res.status(200).json({ data });
+      
+  } catch (error) {
+      console.error("An error occurred: " + error);
+      res.status(500).send("Internal Server Error");
+  }
+}
+
+module.exports = {getProducts, searchProducts};
