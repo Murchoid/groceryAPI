@@ -11,7 +11,7 @@ const cors = require('cors');
 
 //express middleware to allow cross origin requests
 app.use(cors({
-    origin:'*',
+    origin:'https://grocery-store-chi-seven.vercel.app/',
     methods: ['GET', 'POST', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
@@ -38,4 +38,4 @@ connectDb();
 
 app.listen(port, ()=>{
     console.log("Sever listening at port "+ port);
-})
+});
