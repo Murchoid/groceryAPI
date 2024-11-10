@@ -8,7 +8,7 @@
     ],
     "rewrites": [
         {
-            "source": "/(.*)",
+            "source": "/index.js(.*)",
             "destination": "index.js"
         }
     ],
