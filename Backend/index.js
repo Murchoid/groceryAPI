@@ -1,43 +1,33 @@
-//this is for backend, mtu asiguze
-
-//importing the necessary packages to work with express
 const express = require('express');
-const app = express();
-const port = 5000;
-const bodyParser = require('body-parser');
-const path = require('path');
 const cors = require('cors');
-
-
-//express middleware to allow cross origin requests
-app.use(cors({
-    origin:'*',
-    methods: ['GET', 'POST', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization']
-}));
-app.options('*', cors()); 
-
-//importing the file that has the function to connect to the database
+const bodyParser = require('body-parser');
 const connectDb = require('./config/connectToDb');
 
+const app = express();
+const port = process.env.PORT || 5000;
 
-const userRoutes = require('./routes/userRoute')
+// Enable CORS for all routes
+app.use(cors({
+    origin: '*', // Change this to specific origins in production for better security
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Import routes
+const userRoutes = require('./routes/userRoute');
 const itemRoutes = require('./routes/itemsRoute');
 
-
-//suing the bodyparse so that i can used the req.body
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:true}));
-
-
-//making sure all routes that start with /api use the userRoutes
-
+// Use routes
 app.use('/api', userRoutes);
 app.use('/api', itemRoutes);
 
+// Connect to database
 connectDb();
 
-
-app.listen(port, ()=>{
-    console.log("Sever listening at port "+ port);
-})
+// Start the server
+app.listen(port, () => {
+    console.log(`Server listening at port ${port}`);
+});
