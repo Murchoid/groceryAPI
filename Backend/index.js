@@ -4,11 +4,10 @@ const bodyParser = require('body-parser');
 const connectDb = require('./config/connectToDb');
 
 const app = express();
-const port = process.env.PORT || 5000;
 
-// Enable CORS for all routes
+// Enable CORS for the specified origin
 app.use(cors({
-    origin: 'https://grocery-store-chi-seven.vercel.app', // Change this to specific origins in production for better security
+    origin: 'https://grocery-store-chi-seven.vercel.app',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
@@ -27,7 +26,10 @@ app.use('/api', itemRoutes);
 // Connect to database
 connectDb();
 
-// Start the server
-app.listen(port, () => {
-    console.log(`Server listening at port ${port}`);
+// Default response for root
+app.get('/', (req, res) => {
+    res.json({ message: 'Welcome to the API' });
 });
+
+// Export the Express app as a module
+module.exports = app;
