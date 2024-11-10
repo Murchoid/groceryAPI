@@ -19,6 +19,8 @@ app.options('*', cors());
 
 //importing the file that has the function to connect to the database
 const connectDb = require('./config/connectToDb');
+
+
 const userRoutes = require('./routes/userRoute')
 const itemRoutes = require('./routes/itemsRoute');
 
