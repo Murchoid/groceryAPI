@@ -8,7 +8,7 @@ const port = process.env.PORT || 5000;
 
 // Enable CORS for all routes
 app.use(cors({
-    origin: '*', // Change this to specific origins in production for better security
+    origin: 'https://grocery-store-chi-seven.vercel.app', // Change this to specific origins in production for better security
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
