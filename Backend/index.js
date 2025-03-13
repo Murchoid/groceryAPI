@@ -3,7 +3,7 @@
 //importing the necessary packages to work with express
 const express = require('express');
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
@@ -23,7 +23,7 @@ const userRoutes = require('./routes/userRoute')
 const itemRoutes = require('./routes/itemsRoute');
 
 
-//suing the bodyparse so that i can used the req.body
+//suing the bodyparse so that i can use the req.body
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 

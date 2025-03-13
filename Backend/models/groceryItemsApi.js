@@ -1,6 +1,6 @@
 const getProducts = async (req, res) => {
   try {
-    // Dynamically import node-fetch
+    // Dynamically importing node-fetch
     const fetch = (await import('node-fetch')).default;
 
     const response = await fetch(
